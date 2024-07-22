@@ -1,0 +1,36 @@
+.register-container{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(115, 115, 158);
+}
+
+.register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 255, 255, 0.599);
+    width: 50%;
+    height: 50%;
+}
+
+.register-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.register-form input, label{
+    display: block;
+    margin: 5px;
+}
+
+.register-form form button{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+}
