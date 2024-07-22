@@ -1,0 +1,22 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.navbar ul{
+    list-style: none;
+    display: flex;
+}
+
+.navbar li{
+    margin: 0px 19px;
+}
+
+.navbar button{
+    padding: 10px;
+    border-radius: 18px;
+    background-color: blueviolet;
+    font-weight: bold;
+    color: white;
+}
