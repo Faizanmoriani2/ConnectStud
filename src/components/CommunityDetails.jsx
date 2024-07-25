@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import UserPage from './UserPage';
 
 const CommunityDetails = () => {
   const { id } = useParams();
@@ -86,7 +87,10 @@ const CommunityDetails = () => {
     }
   };
 
+
   return (
+    <>
+    <UserPage />
     <div>
       <h2>Community Details</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -118,6 +122,7 @@ const CommunityDetails = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
