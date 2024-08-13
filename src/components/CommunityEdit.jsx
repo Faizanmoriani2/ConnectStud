@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import UserPage from './UserPage';
 
 const CommunityEdit = () => {
   const { id } = useParams();
@@ -45,6 +46,8 @@ const CommunityEdit = () => {
   };
 
   return (
+    <>
+    <UserPage />
     <div>
       <h2>Edit Community</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -70,6 +73,7 @@ const CommunityEdit = () => {
         <button type="submit">Update</button>
       </form>
     </div>
+    </>
   );
 };
 
