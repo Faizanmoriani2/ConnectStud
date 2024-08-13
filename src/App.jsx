@@ -21,6 +21,8 @@ import ViewComments from './components/ViewComments';
 import UpdateComment from './components/UpdateComment';
 import EventDetails from './components/EventDetails';
 import HomePage from './components/HomePage';
+import CommunityEdit from './components/CommunityEdit';
+
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="/user" element={<UserPage />} />
           <Route path="/communities" element={<CommunityList />} />
           <Route path="/communities/create" element={<CreateCommunity />} />
+          <Route path="/communities/:id/edit" element={<CommunityEdit />} />
           <Route path="/communities/:id" element={<CommunityDetails />} />
           <Route path="/communities/:id/create-post" element={<CreatePost />} />
           <Route path="/communities/:id/posts" element={<ViewPosts />} />

@@ -22,6 +22,7 @@ const LoginPage = () => {
     
     if (response.ok) {
       localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('userId', data.user.id);
       navigate('/user');
     } else {
       alert(data.message || 'Login failed');

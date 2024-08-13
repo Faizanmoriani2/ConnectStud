@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/UserPage.css'
 
 const UserPage = () => {
   const [user, setUser] = useState(null);
@@ -46,10 +47,27 @@ const UserPage = () => {
   if (!user) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h2>Current User</h2>
-      <p>Username: {user.username}</p>
-      <p>Email: {user.email}</p>
+    <div className='user-navbar'>
+
+      <div className="user-nav-left">
+        <img src="" alt="logo" />
+        <h2>ConnectStud</h2>
+      </div>
+
+      <div className="user-nav-mid">
+        <ul>
+          <li><Link to={'/communities'}>Communities</Link></li>
+        </ul>
+      </div>
+
+      <div className="user-info">
+        <p>Username: {user.username}</p>
+        <p>Email: {user.email}</p>
+      </div>
+      <div className="profile-pic">
+        <img src="" alt="" />
+      </div>
+      
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

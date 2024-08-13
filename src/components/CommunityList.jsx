@@ -1,11 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import UserPage from './UserPage';
+import '../styles/CommunityList.css'
+import communityImage from "../assets/HomePage.jpg"
 
 const CommunityList = () => {
   const [communities, setCommunities] = useState([]);
   const [error, setError] = useState('');
-
   useEffect(() => {
     const fetchCommunities = async () => {
       const token = localStorage.getItem('accessToken');
@@ -33,17 +35,45 @@ const CommunityList = () => {
   }, []);
 
   return (
-    <div>
+    <>
+    <UserPage />
+    <div className='communities'>
       <h2>Communities</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ul>
+      <div className="community-card-wrap">
         {communities.map((community) => (
-          <li key={community._id}>
-            <Link to={`/communities/${community._id}`}>{community.name}</Link>
-          </li>
+          
+          <div key={community._id} className="community-card">
+              <div className='community-image'>
+                <img src={`http://localhost:5000${community.coverImage}`} alt="img.jpg" />
+              </div>
+              <div className='community-content'>
+                <div className="community-title">
+                <Link to={`/communities/${community._id}`}>{community.name}</Link>
+                </div>
+                <div className="community-description">
+                <p>{community.description}</p>
+                <h4>Created By: {community.createdBy.username}</h4>
+                </div>
+              </div>
+          </div>
         ))}
-      </ul>
+        <div className="community-card">
+          <div className='community-image'>
+              </div>
+              <div className='community-content'>
+                <div className="community-title">
+                  <Link to={'/communities/create'}>Create New Community</Link>
+                </div>
+                <div className="community-description">
+                <h4> </h4>
+                </div>
+              </div>
+      </div>
+      </div>
+   
     </div>
+    </>
   );
 };
 
