@@ -1,0 +1,91 @@
+.container {
+  padding: 4rem 6rem;
+  background: #080520;
+}
+
+.home-main {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  gap: 4rem;
+  border-radius: 18px;
+  background: linear-gradient(
+    130deg,
+    rgba(15, 9, 52, 1) 0%,
+    rgba(48, 27, 79, 1) 37%,
+    rgba(71, 32, 125, 1) 100%
+  );
+  padding: 3rem;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.home-btnConnect {
+  background-color: #bb99ff;
+  padding: 8px 40px;
+  border-radius: 25px;
+  width: fit-content;
+}
+
+.home-btnConnect h3 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* .home-tagline {
+  width: 150px;
+} */
+
+.home-tagline h2 {
+  margin-top: 1rem;
+  line-height: 1.2;
+  font-size: 38px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.home-tagline p {
+  line-height: 1.6;
+  font-size: 18px;
+  color: #eee6ff;
+}
+
+.home-btnStart button {
+  padding: 15px 45px 15px 25px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  background: #fff;
+  position: relative;
+  font-size: 18px;
+}
+
+.my-arrow_1 {
+  position: absolute;
+  right: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  padding: 7px;
+}
+
+.homeImage {
+  flex: 1;
+  width: 80%;
+}
+
+.homeImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 8px;
+}
