@@ -1,0 +1,45 @@
+Date : 2024-07-23 22:58:34
+Directory : c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components
+Total : 21 files,  1162 codes, 1 comments, 173 blanks, all 1336 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         21 |      1,162 |          1 |        173 |      1,336 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                  | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                     |         21 |      1,162 |          1 |        173 |      1,336 |
++-----------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                              | language       | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\AddMember.jsx        | JavaScript JSX |         49 |          0 |          7 |         56 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CommunityDetails.jsx | JavaScript JSX |        115 |          0 |         15 |        130 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CommunityEdit.jsx    | JavaScript JSX |         68 |          0 |          9 |         77 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CommunityList.jsx    | JavaScript JSX |         71 |          0 |         15 |         86 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CreateComment.jsx    | JavaScript JSX |         60 |          0 |          7 |         67 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CreateCommunity.jsx  | JavaScript JSX |         69 |          1 |          7 |         77 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CreateEvent.jsx      | JavaScript JSX |         80 |          0 |          7 |         87 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\CreatePost.jsx       | JavaScript JSX |         50 |          0 |          7 |         57 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\EventDetails.jsx     | JavaScript JSX |         30 |          0 |          7 |         37 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\HomePage.jsx         | JavaScript JSX |         41 |          0 |          5 |         46 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\LoginPage.jsx        | JavaScript JSX |         54 |          0 |          7 |         61 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\NavHead.jsx          | JavaScript JSX |         14 |          0 |          5 |         19 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\Navbar.jsx           | JavaScript JSX |         38 |          0 |          6 |         44 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\Registration.jsx     | JavaScript JSX |         56 |          0 |         10 |         66 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\UpdateComment.jsx    | JavaScript JSX |         62 |          0 |          9 |         71 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\UpdateEvent.jsx      | JavaScript JSX |         95 |          0 |          9 |        104 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\UpdatePost.jsx       | JavaScript JSX |         62 |          0 |          9 |         71 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\UserPage.jsx         | JavaScript JSX |         64 |          0 |         14 |         78 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\ViewComments.jsx     | JavaScript JSX |         27 |          0 |          6 |         33 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\ViewEvents.jsx       | JavaScript JSX |         30 |          0 |          6 |         36 |
+| c:\Users\ideal\Desktop\Some Work\Projects\Final Year Project\Frontend\ConnectStud\src\components\ViewPosts.jsx        | JavaScript JSX |         27 |          0 |          6 |         33 |
+| Total                                                                                                                 |                |      1,162 |          1 |        173 |      1,336 |
++-----------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
