@@ -27,6 +27,7 @@ import { ConnectPage } from "./components/ConnectPage";
 import { NotificationPage } from "./components/NotificationPage";
 import { InboxPage } from "./components/InboxPage";
 import { MessagePage } from "./components/MessagePage";
+import {AboutPage} from "./components/AboutPage"
 
 function App() {
   return (
@@ -65,6 +66,9 @@ function App() {
 
           <Route path="/inbox" element={<InboxPage />} />
           <Route path="/messages/:userId" element={<MessagePage />} />
+
+          <Route path="/about" element={<AboutPage />} />
+
         </Routes>
       </div>
     </Router>

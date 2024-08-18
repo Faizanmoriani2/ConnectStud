@@ -28,10 +28,7 @@ function HomePage() {
                 Communities
               </h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Doloremque pariatur repellat nostrum consequatur dolor
-                blanditiis corporis quo fugiat assumenda aliquam explicabo ab,
-                facere eum, similique quia in quae? Perspiciatis, pariatur.
+              Our mission is to empower individuals to find meaningful connections, share knowledge, and grow together. By fostering supportive environments, we help communities thrive and inspire creativity through shared experiences and resources. Join us in shaping the future of connected communities.
               </p>
             </div>
             <div className="home-btnStart">

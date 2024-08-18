@@ -1,0 +1,77 @@
+/* ConnectPage Container */
+.ConnectPage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #6a1b9a, #8e44ad); /* Gradient background */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    min-height: 100vh;
+}
+
+.ConnectPage h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* List of Users */
+.ConnectPage ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ConnectPage li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(30, 30, 45, 0.8); /* Slightly transparent dark background */
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ConnectPage li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* User Details */
+.ConnectPage li p {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #ddd;
+}
+
+/* Buttons */
+.ConnectPage button {
+    background-color: #9e79d6; /* Light purple button color */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.ConnectPage button:hover {
+    background-color: #7e57c2; /* Slightly darker purple on hover */
+    transform: translateY(-3px);
+}
+
+.ConnectPage a button {
+    background-color: #d16ba5; /* Different color for message button */
+}
+
+.ConnectPage a button:hover {
+    background-color: #c94f9b;
+}

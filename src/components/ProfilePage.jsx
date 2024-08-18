@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserPage from './UserPage';
+import "../styles/ProfilePage.css"
+
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
@@ -87,44 +89,47 @@ const ProfilePage = () => {
 
   return (
     <>
-    <UserPage />
-    <div>
-      <h2>{user.username}'s Profile</h2>
-      {!editMode ? (
-        <div>
-           <img src={`http://localhost:5000/uploads/default-avatar.png`} alt="Profile" width="150" />
-
-          <p><strong>Name:</strong> {user.username}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          {user.bio && <p><strong>Bio:</strong> {user.bio}</p>}
-          <button onClick={() => setEditMode(true)}>Edit Profile</button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="bio">Bio:</label>
-            <textarea
-              id="bio"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-            />
+      <UserPage />
+      <div className="profile-container">
+        <h2>{user.username}'s Profile</h2>
+        {!editMode ? (
+          <div className="profile-info">
+            <img src={`http://localhost:5000/uploads/default-avatar.png`} alt="Profile" className="profile-image" />
+            <p><strong>Name:</strong> {user.username}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+            {user.bio && <p><strong>Bio:</strong> {user.bio}</p>}
+            <button className="edit-btn" onClick={() => setEditMode(true)}>Edit Profile</button>
           </div>
-          <div>
-            <label htmlFor="profilePicture">Profile Picture:</label>
-            <input
-              type="file"
-              id="profilePicture"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
-          </div>
-          <button type="submit">Update Profile</button>
-          <button type="button" onClick={() => setEditMode(false)}>Cancel</button>
-        </form>
-      )}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-    </div>
+        ) : (
+          <form className="profile-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="bio">Bio:</label>
+              <textarea
+                id="bio"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+                className="bio-input"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="profilePicture">Profile Picture:</label>
+              <input
+                type="file"
+                id="profilePicture"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="file-input"
+              />
+            </div>
+            <div className="button-group">
+              <button type="submit" className="update-btn">Update Profile</button>
+              <button type="button" className="cancel-btn" onClick={() => setEditMode(false)}>Cancel</button>
+            </div>
+          </form>
+        )}
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {success && <p style={{ color: 'green' }}>{success}</p>}
+      </div>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "../styles/Navbar.css";
-import Logo from "../assets/logo.webp";
+import Logo from "../assets/logo-white-nobg.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,15 +21,15 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="nav-right">
-        <img src={Logo} alt="logo" width={50} />
-        <h2>ConnectStud</h2>
+        <img src={Logo} alt="logo" width={100} />
+        {/* <h2>ConnectStud</h2> */}
       </div>
 
       <ul>
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>About</li>
+        <li><Link to="/about">About</Link></li>
       </ul>
       {location.pathname === "/login" ? (
         <button onClick={handleClick}>Register<FontAwesomeIcon icon={faArrowRight} className="my-arrow" /></button>

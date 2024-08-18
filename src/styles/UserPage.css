@@ -1,45 +1,153 @@
-.user-navbar{
+.user-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(117, 81, 151);
-    padding: 10px;
+    /* background-color: #582c81; Dark purple background */
+    padding: 15px 30px;
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
-.user-navbar ul{
+.user-nav-mid {
+    justify-self:flex-end;
+    margin-left: auto;
+}
+
+.user-nav-left h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.user-nav-mid ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.user-navbar li{
-    margin: 0px 10px;
+.user-nav-mid li {
+    margin: 0 15px;
+}
+
+.user-nav-mid a {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.user-navbar button{
-    border-radius: 8px;
-    padding: 6px;
+.user-nav-mid a:hover {
+    background-color: #9e79d6; /* Light purple hover effect */
+    color: #fff;
+    
 }
 
-.user-nav-mid a{
-        font-size: 14px;
-        text-align: center;
-        border-radius: 20px;
-        padding: 8px 20px;
-        color: rgba(255, 255, 255, 0.96);
-        margin-top: 8px;
-        text-decoration: none;
-        background: linear-gradient(0deg,
-                rgba(94, 94, 94, 0.07),
-                rgba(94, 94, 94, 0.08)),
-            rgba(255, 255, 255, 0.08);
-        background-blend-mode: color-dodge, lighten;
-        display: block;
-        bottom: 0;
+.user-info {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
-.user-nav-mid a:active {
-    font-weight: bold;
-    color:rgb(117, 81, 151);
+.user-info p {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.profile-pic img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #1e1e2d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1000;
+    margin-top: 10px;
+    min-width: 150px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-item img {
+    margin-right: 10px;
+}
+
+.dropdown-item:hover {
+    background-color: #9e79d6; /* Light purple hover effect */
+}
+
+.dropdown-item button {
+    background: none;
+    border: none;
+    color: #fff;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.user-info {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.user-info p {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.profile-pic img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.dropdown-arrow {
+    color: #ddd;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.user-info:hover .dropdown-arrow {
+   scale: 1.2; /* Rotate arrow on hover */
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #1e1e2d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1000;
+    margin-top: 10px;
+    min-width: 150px;
 }

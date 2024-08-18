@@ -293,6 +293,7 @@ const CommunityDetails = () => {
             posts.map((post) => (
               <div key={post._id} className="community-post-item">
                 <p><strong>{post.author.username}</strong> ({post.author.email})</p>
+                  <hr />
                 <p>{post.content}</p>
                 {post.image && <img src={`http://localhost:5000${post.image}`} alt="Post" />}
                 {(post.author._id === currentUserId || community.createdBy === currentUserId) && (
@@ -318,8 +319,6 @@ const CommunityDetails = () => {
                           )}
                         </div>
                       ))}
-                    
-                      
                     </div>
 
                   )}

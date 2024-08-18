@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserPage from './UserPage';
+import "../styles/ConnectPage.css"
 
 export const ConnectPage = () => {
     const [users, setUsers] = useState([]);
@@ -58,7 +59,7 @@ export const ConnectPage = () => {
     return (
         <>
         <UserPage />
-        <div>
+        <div className="ConnectPage">
             <h1>Connect with Users</h1>
             {error && <p style={{ color: "red" }}>{error}</p>}
             <ul>

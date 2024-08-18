@@ -1,35 +1,79 @@
-.create-community-container{
+.create-community-container {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: rgb(115, 115, 158);
+    background: linear-gradient(135deg, #6a1b9a, #8e44ad); /* Modern gradient background */
+    padding: 20px;
 }
 
-.create-community-form{
+.create-community-form {
+    background-color: #1e1e2d; /* Dark background for the form */
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    color: #fff;
+}
+
+.create-community-form h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.create-community-form form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 255, 255, 0.599);
-    width: 50%;
-    height: 50%;
+    width: 100%;
 }
 
-.create-community-form form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
+.create-community-form label {
+    text-align: left;
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 5px;
 }
 
-.create-community-form input, label{
-    display: block;
+.create-community-form input[type="text"],
+.create-community-form input[type="file"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: rgba(30, 30, 45, 0.9);
+    color: #ddd;
+    font-size: 1rem;
 }
 
-.create-community-form form button{
-    margin: 5px;
-    padding: 5px;
+.create-community-form form button {
+    background-color: #9e79d6; /* Light purple button color */
+    color: white;
+    border: none;
     border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+.create-community-form form button:hover {
+    background-color: #7e57c2;
+    transform: translateY(-3px);
+}
+
+.create-community-form p {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.create-community-form p[style="color: red;"] {
+    color: #ff6b6b;
+}
+
+.create-community-form p[style="color: green;"] {
+    color: #28a745;
 }

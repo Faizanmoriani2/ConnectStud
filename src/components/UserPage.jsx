@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/UserPage.css'
-import bell from "../assets/bell.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import '../styles/UserPage.css';
+import bell from "../assets/bell.png";
+import logo from "../assets/logo-white-nobg.png"
 
 const UserPage = () => {
   const [user, setUser] = useState(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,37 +49,43 @@ const UserPage = () => {
     navigate('/login');
   };
 
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
   if (!user) return <p>Loading...</p>;
 
   return (
     <div className='user-navbar'>
 
       <div className="user-nav-left">
-        <img src="" alt="logo" />
-        <h2>ConnectStud</h2>
+        <img src={logo} alt="logo" width={80}/>
       </div>
-      <div>
-        <Link to={'/notifications'}> <img src={bell} alt=""  width={25}/> </Link>
-      </div>
+      
       <div className="user-nav-mid">
         <ul>
-          <li><Link to={'/communities'}>Communities</Link></li>
+          <li><Link to={'/communities'}>Explore Communities</Link></li>
         </ul>
       </div>
 
-      <div className="user-info">
-        <p>Username: {user.username}</p>
-        <p>Email: {user.email}</p>
-      </div>
-      <div className="profile-pic">
-      {user.profilePicture && (
-        <img src={`http://localhost:5000${user.profilePicture}`} alt="Profile" width="150" />
-      )}
+      <div className="user-info" onClick={toggleDropdown}>   
+        <div className="profile-pic">
+          <img src={`http://localhost:5000/uploads/default-avatar.png`} alt="" />
+        </div>
+        <p>{user.username}</p>
+        <FontAwesomeIcon icon={faCaretDown} className="dropdown-arrow" />
       </div>
 
-      <button ><Link to={`/connect`}>Add Connections</Link></button>
-      <button ><Link to={`/user/${user.id}/profile`}>View Profile</Link></button>
-      <button onClick={handleLogout}>Logout</button>
+      {dropdownVisible && (
+        <div className="dropdown-menu">
+          <Link to={`/user/${user.id}/profile`} className="dropdown-item">View Profile</Link>
+          <Link to={'/notifications'} className="dropdown-item">
+            <img src={bell} alt="Notifications" width={20} /> Notifications
+          </Link>
+          <button onClick={handleLogout} className="dropdown-item">Logout</button>
+        </div>
+      )}
+
     </div>
   );
 };

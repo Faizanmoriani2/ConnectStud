@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserPage from './UserPage';
+import "../styles/NotificationPage.css"
 
 export const NotificationPage = () => {
   const [notifications, setNotifications] = useState([]);
@@ -91,33 +92,33 @@ export const NotificationPage = () => {
 
   return (
     <>
-    <UserPage />
-    <div>
-      <h2>Notifications</h2>
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        <>
-          {notifications.length === 0 ? (
-            <p>No notifications available</p>
-          ) : (
-            <ul>
-              {notifications.map((notification) => (
-                <li key={notification._id}>
-                  Connection request from {notification.sender.username} ({notification.sender.email}) - Status: {notification.status}
-                  {notification.status === 'pending' && (
-                    <>
-                      <button onClick={() => handleConfirm(notification._id)}>Confirm</button>
-                      <button onClick={() => handleDecline(notification._id)}>Decline</button>
-                    </>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </>
-      )}
-    </div>
+      <UserPage />
+      <div className="notification-container">
+        <h2 className="notification-title">Notifications</h2>
+        {error ? (
+          <p className="notification-error">{error}</p>
+        ) : (
+          <>
+            {notifications.length === 0 ? (
+              <p className="notification-none">No notifications available</p>
+            ) : (
+              <ul className="notification-list">
+                {notifications.map((notification) => (
+                  <li key={notification._id} className="notification-item">
+                    Connection request from <strong>{notification.sender.username}</strong> ({notification.sender.email}) - Status: <strong>{notification.status}</strong>
+                    {notification.status === 'pending' && (
+                      <div className="notification-actions">
+                        <button className="confirm-btn" onClick={() => handleConfirm(notification._id)}>Confirm</button>
+                        <button className="decline-btn" onClick={() => handleDecline(notification._id)}>Decline</button>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 };

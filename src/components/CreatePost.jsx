@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import UserPage from './UserPage';
+import "../styles/CreatePost.css"
 
 const CreatePost = () => {
   const { id } = useParams();
@@ -42,31 +44,36 @@ const CreatePost = () => {
   };
 
   return (
-    <div>
-      <h2>Create Post in Community {id}</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Content:</label>
-          <input
-            type="text"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Image:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])} // Handle image input
-          />
-        </div>
-        <button type="submit">Create</button>
-      </form>
-    </div>
+    <>
+      <UserPage />
+      <div className="create-post-container">
+        <h2 className="create-post-title">Create Post in Community {id}</h2>
+        {error && <p className="create-post-error">{error}</p>}
+        {success && <p className="create-post-success">{success}</p>}
+        <form className="create-post-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="content">Content:</label>
+            <input
+              type="text"
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="image">Image:</label>
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
+          <button className="create-post-button" type="submit">Create</button>
+        </form>
+      </div>
+    </>
   );
 };
 
