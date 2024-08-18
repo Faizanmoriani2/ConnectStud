@@ -25,7 +25,6 @@
 
 .create-community-form input, label{
     display: block;
-    margin: 5px;
 }
 
 .create-community-form form button{
