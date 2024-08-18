@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/UserPage.css'
-import bell from "../assets/bell.png"
 
 const UserPage = () => {
   const [user, setUser] = useState(null);
@@ -54,9 +53,7 @@ const UserPage = () => {
         <img src="" alt="logo" />
         <h2>ConnectStud</h2>
       </div>
-      <div>
-        <Link to={'/notifications'}> <img src={bell} alt=""  width={25}/> </Link>
-      </div>
+
       <div className="user-nav-mid">
         <ul>
           <li><Link to={'/communities'}>Communities</Link></li>
@@ -68,13 +65,9 @@ const UserPage = () => {
         <p>Email: {user.email}</p>
       </div>
       <div className="profile-pic">
-      {user.profilePicture && (
-        <img src={`http://localhost:5000${user.profilePicture}`} alt="Profile" width="150" />
-      )}
+        <img src="" alt="" />
       </div>
-
-      <button ><Link to={`/connect`}>Add Connections</Link></button>
-      <button ><Link to={`/user/${user.id}/profile`}>View Profile</Link></button>
+      
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

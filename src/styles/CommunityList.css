@@ -1,16 +1,17 @@
 .communities h2{
     text-align: center;
-    color: antiquewhite;
+    color: #fff;
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
 .communities {
-    background-color: rgb(88, 44, 129);
+    /* background-color: rgb(88, 44, 129); */
     height: 100vh;
 }
 .community-card-wrap {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    flex-wrap: wrap;
     
 }
 .community-card{

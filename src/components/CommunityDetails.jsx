@@ -14,7 +14,7 @@ const CommunityDetails = () => {
   const [isMember, setIsMember] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
-  const [commentContent, setCommentContent] = useState({}); 
+  const [commentContent, setCommentContent] = useState({}); // Now an object
 
   useEffect(() => {
     const fetchCommunity = async () => {

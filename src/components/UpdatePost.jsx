@@ -1,113 +1,106 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const ProfilePage = () => {
-  const [user, setUser] = useState(null);
-  const [bio, setBio] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
+const UpdatePost = () => {
+  const { id } = useParams();
+  const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
+    const fetchPost = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/users/current`, {
+        const token = localStorage.getItem('accessToken');
+        const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            'Authorization': `Bearer ${token}`,
           },
         });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-
         const data = await response.json();
-        setUser(data);
-        setBio(data.bio || '');
-        setProfilePicture(data.profilePicture || null);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+
+        if (response.ok) {
+          setContent(data.content);
+          setImage(data.image);
+        } else {
+          setError(data.message || 'Failed to fetch post');
+        }
+      } catch (error) {
+        setError('An error occurred. Please try again.');
       }
     };
 
-    fetchUserProfile();
-  }, []);
+    fetchPost();
+  }, [id]);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p style={{ color: 'red' }}>{error}</p>;
-  }
-
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    setError('');  // Clear any previous error
-    setSuccess(''); // Clear any previous success message
+    const token = localStorage.getItem('accessToken');
 
     const formData = new FormData();
-    formData.append('bio', bio);
-    if (profilePicture) {
-      formData.append('profilePicture', profilePicture);
+    formData.append('content', content);
+    if (image) {
+      formData.append('image', image);
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/users/profile`, {
+      const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
         method: 'PUT',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          'Authorization': `Bearer ${token}`,
         },
         body: formData,
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update profile");
-      }
-
       const data = await response.json();
-      setUser(data);  // Update user data after successful update
-      setSuccess('Profile updated successfully!');
+      if (response.ok) {
+        setSuccess('Post updated successfully!');
+        setTimeout(() => navigate(`/communities/${data.community._id}`), 2000); // Navigate back to the community page after success
+      } else {
+        setError(data.message || 'Failed to update post');
+      }
     } catch (err) {
-      setError(err.message);
+      setError('An error occurred. Please try again.');
     }
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
   };
 
   return (
     <div>
-      <h2>{user.username}'s Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="bio">Bio:</label>
-          <textarea
-            id="bio"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="profilePicture">Profile Picture:</label>
-          <input
-            type="file"
-            id="profilePicture"
-            accept="image/*"
-            onChange={(e) => setProfilePicture(e.target.files[0])}
-          />
-        </div>
-        <button type="submit">Update Profile</button>
-      </form>
+      <h2>Edit Post</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
-      {user.profilePicture && (
+      <form onSubmit={handleUpdate}>
         <div>
-          <h3>Current Profile Picture:</h3>
-          <img src={`http://localhost:5000${user.profilePicture}`} alt="Profile" width="150" />
+          <label>Content:</label>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            required
+          />
         </div>
-      )}
+        <div>
+          <label>Update Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+        </div>
+        {image && (
+          <div>
+            <p>Current Image:</p>
+            <img src={`http://localhost:5000${image}`} alt="Current Post" style={{ maxWidth: '200px' }} />
+          </div>
+        )}
+        <button type="submit">Update Post</button>
+      </form>
     </div>
   );
 };
 
-export default ProfilePage;
+export default UpdatePost;

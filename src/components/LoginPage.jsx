@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import "../styles/LoginPage.css"
+import formWallpaper from "../assets/home_wallpaper.jpeg"
+
+import CustomIcon from './CustomIcon'; // Make sure the path is correct
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -32,10 +35,12 @@ const LoginPage = () => {
   return (
     <> 
     <Navbar />
-    <div className="login-container">
-      <div className='login-form'>
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+    <div className="register-container">
+        <div className="register-form">
+          <h1> <CustomIcon />ConnectStud</h1>
+          <h2>Log In</h2>
+          <p>Let's get started!</p>
+          <form onSubmit={handleSubmit}>
           <input 
             type="email" 
             placeholder="Email" 
@@ -53,6 +58,9 @@ const LoginPage = () => {
           <button type="submit">Login</button>
         </form>
       </div>
+      <div className="resgister-wallpaper">
+          <img src={formWallpaper} alt="form-wallpaper" />
+        </div>
     </div>
     </>
   );
