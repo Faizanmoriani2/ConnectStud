@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
+import "../styles/LoginPage.css"
+import formWallpaper from "../assets/home_wallpaper.jpeg"
+
+import CustomIcon from './CustomIcon'; // Make sure the path is correct
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -20,6 +25,7 @@ const LoginPage = () => {
     
     if (response.ok) {
       localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('userId', data.user.id);
       navigate('/user');
     } else {
       alert(data.message || 'Login failed');
@@ -27,26 +33,36 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
-        <button type="submit">Login</button>
-      </form>
+    <> 
+    <Navbar />
+    <div className="register-container">
+        <div className="register-form">
+          <h1> <CustomIcon />ConnectStud</h1>
+          <h2>Log In</h2>
+          <p>Let's get started!</p>
+          <form onSubmit={handleSubmit}>
+          <input 
+            type="email" 
+            placeholder="Email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required 
+          />
+          <input 
+            type="password" 
+            placeholder="Password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div className="resgister-wallpaper">
+          <img src={formWallpaper} alt="form-wallpaper" />
+        </div>
     </div>
+    </>
   );
 };
 
