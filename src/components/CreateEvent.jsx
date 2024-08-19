@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import UserPage from './UserPage';
+import '../styles/CreateEvent.css';
 
 const CreateEvent = () => {
   const { id: communityId } = useParams();
@@ -36,50 +38,61 @@ const CreateEvent = () => {
   };
 
   return (
-    <div>
-      <h2>Create Event in Community {communityId}</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title:</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Description:</label>
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Location:</label>
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Create</button>
-      </form>
-    </div>
+    <>
+      <UserPage />
+      <div className="create-event-container">
+        <h2>Create Event in Community {communityId}</h2>
+        {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
+        <form className="create-event-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              className="input-field"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="description">Description:</label>
+            <input
+              type="text"
+              id="description"
+              className="input-field"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              className="input-field"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">Location:</label>
+            <input
+              type="text"
+              id="location"
+              className="input-field"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="create-event-button">Create</button>
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,35 @@
+.event-details-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1e1e2d; /* Dark background for the container */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+}
+
+.loading-message {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ddd;
+}
+
+.event-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #9e79d6; /* Light purple color for the title */
+}
+
+.event-description {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.event-date,
+.event-location {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #aaa;
+}

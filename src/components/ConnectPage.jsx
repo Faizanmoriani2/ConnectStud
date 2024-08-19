@@ -67,9 +67,9 @@ export const ConnectPage = () => {
                     <li key={user._id}>
                         {user.username} ({user.email})
                         <button onClick={() => sendConnectionRequest(user._id)}>Connect</button>
-                        <Link to={`/messages/${user._id}`}>
+                        {/* <Link to={`/messages/${user._id}`}>
                             <button>Message</button>
-                        </Link>
+                        </Link> */}
                     </li>
                 ))}
             </ul>

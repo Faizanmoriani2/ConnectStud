@@ -65,6 +65,7 @@ const UserPage = () => {
       <div className="user-nav-mid">
         <ul>
           <li><Link to={'/communities'}>Explore Communities</Link></li>
+          <li><Link to={'/connect'}>Add Connections</Link></li>
         </ul>
       </div>
 

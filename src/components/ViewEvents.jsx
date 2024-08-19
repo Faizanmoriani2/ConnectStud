@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/ViewEvents.css';
+import UserPage from './UserPage';
 
 const ViewEvents = () => {
   const [events, setEvents] = useState([]);
@@ -19,16 +21,19 @@ const ViewEvents = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Events</h2>
-      <ul>
+    <>
+    <UserPage />
+    <div className="view-events-container">
+      <h2 className="view-events-title">Events</h2>
+      <ul className="events-list">
         {events.map((event) => (
-          <li key={event._id}>
-            <Link to={`/events/${event._id}`}>{event.title}</Link>
+          <li key={event._id} className="event-item">
+            <Link to={`/events/${event._id}`} className="event-link">{event.title}</Link>
           </li>
         ))}
       </ul>
     </div>
+    </>
   );
 };
 
