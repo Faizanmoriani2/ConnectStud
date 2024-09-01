@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserPage from './UserPage';
+import '../styles/CommunityEdit.css';
 
 const CommunityEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [coverImage, setCoverImage] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -24,14 +26,18 @@ const CommunityEdit = () => {
     e.preventDefault();
     const token = localStorage.getItem('accessToken');
 
+    const formData = new FormData();
+    if (name) formData.append('name', name);
+    if (description) formData.append('description', description);
+    if (coverImage) formData.append('coverImage', coverImage);
+
     try {
       const response = await fetch(`http://localhost:5000/api/communities/${id}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ name, description }),
+        body: formData,
       });
 
       if (response.ok) {
@@ -45,34 +51,49 @@ const CommunityEdit = () => {
     }
   };
 
+  const handleFileChange = (e) => {
+    setCoverImage(e.target.files[0]);
+  };
+
   return (
     <>
-    <UserPage />
-    <div>
-      <h2>Edit Community</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Description:</label>
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Update</button>
-      </form>
-    </div>
+      <UserPage />
+      <div className="community-edit-container">
+        <h2>Edit Community</h2>
+        {error && <p className="error-message">{error}</p>}
+        <form className="community-edit-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              className="input-field"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="description">Description:</label>
+            <textarea
+              id="description"
+              className="input-field"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="coverImage">Cover Image:</label>
+            <input
+              type="file"
+              id="coverImage"
+              className="input-field"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+          </div>
+          <button type="submit" className="community-edit-button">Update</button>
+        </form>
+      </div>
     </>
   );
 };

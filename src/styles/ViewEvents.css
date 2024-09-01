@@ -44,3 +44,99 @@
 .event-link:hover {
     color: #d16ba5; /* Hover color */
 }
+.view-events-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1e1e2d; /* Dark background */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+}
+
+.view-events-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.events-list {
+    list-style: none;
+    padding: 0;
+}
+
+.event-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #2e2e3b;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.event-link {
+    font-size: 1.5rem;
+    color: #9e79d6;
+    text-decoration: none;
+}
+
+.event-link:hover {
+    text-decoration: underline;
+}
+
+.event-date {
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.event-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.update-button,
+.delete-button {
+    background-color: #9e79d6; /* Light purple */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.update-button:hover,
+.delete-button:hover {
+    background-color: #7e57c2;
+    transform: translateY(-2px);
+}
+
+.delete-button {
+    background-color: #ff6b6b; /* Red for delete */
+}
+
+.delete-button:hover {
+    background-color: #e74c3c;
+}
+
+.google-calendar-button {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #4285F4;
+    color: white;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .google-calendar-button:hover {
+    background-color: #357AE8;
+  }
+  

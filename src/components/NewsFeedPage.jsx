@@ -39,24 +39,10 @@ export const NewsFeedPage = () => {
     const handleAddComment = async (postId) => {
         const token = localStorage.getItem('accessToken');
         const commentContent = newComment[postId];
-        const userId = localStorage.getItem('userId'); // Get the userId from local storage
-    
+
         if (!commentContent) return;
-    
+
         try {
-            // Fetch the user details based on userId
-            const userResponse = await fetch(`http://localhost:5000/api/users/current`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-    
-            if (!userResponse.ok) {
-                throw new Error('Failed to fetch user details');
-            }
-    
-            const user = await userResponse.json(); // Assuming the user API returns user details including _id and username
-    
             const response = await fetch(`http://localhost:5000/api/comments`, {
                 method: 'POST',
                 headers: {
@@ -65,23 +51,13 @@ export const NewsFeedPage = () => {
                 },
                 body: JSON.stringify({ post: postId, content: commentContent }),
             });
-    
+
             if (response.ok) {
                 const newComment = await response.json();
-    
-                // Manually populate the author information for the new comment
-                const populatedComment = {
-                    ...newComment,
-                    author: {
-                        _id: user._id,
-                        username: user.username,
-                    }
-                };
-    
                 setPosts(posts.map(post => 
                     post._id === postId ? { 
                         ...post, 
-                        comments: [...post.comments, populatedComment] 
+                        comments: [...post.comments, newComment] 
                     } : post
                 ));
                 setNewComment({ ...newComment, [postId]: '' });
@@ -138,7 +114,7 @@ export const NewsFeedPage = () => {
                     <div key={post._id} className="post">
                         <div className="post-header">
                             <img
-                                src={'http://localhost:5000/uploads/default-avatar.png'}
+                                src={`http://localhost:5000${post.author.profileImage || '/uploads/default-avatar.png'}`}
                                 alt={post.author.username}
                                 className="post-author-image"
                             />

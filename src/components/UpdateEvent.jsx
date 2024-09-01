@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import '../styles/UpdateEvent.css';  // Assuming you're placing the CSS in a separate file
+import UserPage from './UserPage';
 
 const UpdateEvent = () => {
   const { id } = useParams();
@@ -17,7 +19,7 @@ const UpdateEvent = () => {
         const data = await response.json();
         setTitle(data.title);
         setDescription(data.description);
-        setDate(data.date);
+        setDate(data.date.split('T')[0]);  // Ensure only the date part is used
         setLocation(data.location);
       } catch (error) {
         console.error('Error fetching event:', error);
@@ -53,50 +55,53 @@ const UpdateEvent = () => {
   };
 
   return (
-    <div>
+    <>
+    <UserPage />
+    <div className="update-event-container">
       <h2>Update Event</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form onSubmit={handleUpdate}>
-        <div>
+      {error && <p className="error-message">{error}</p>}
+      {success && <p className="success-message">{success}</p>}
+      <form className="update-event-form" onSubmit={handleUpdate}>
+        <div className="form-group">
           <label>Title:</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Description:</label>
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Date:</label>
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            required
+            className="input-field"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Location:</label>
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            required
+            className="input-field"
           />
         </div>
-        <button type="submit">Update</button>
+        <button type="submit" className="update-event-button">Update</button>
       </form>
     </div>
+    </>
   );
 };
 

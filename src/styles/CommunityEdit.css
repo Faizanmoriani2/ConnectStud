@@ -1,0 +1,67 @@
+.community-edit-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1e1e2d; /* Dark background for the container */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+}
+
+.community-edit-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.error-message {
+    color: #ff6b6b;
+    margin-bottom: 10px;
+}
+
+.community-edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: rgba(30, 30, 45, 0.9);
+    color: #ddd;
+    font-size: 1rem;
+}
+
+.community-edit-button {
+    background-color: #9e79d6; /* Light purple button color */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+.community-edit-button:hover {
+    background-color: #7e57c2;
+    transform: translateY(-3px);
+}

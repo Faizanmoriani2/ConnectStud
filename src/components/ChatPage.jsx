@@ -75,42 +75,68 @@ export const ChatPage = () => {
                     console.error("Error fetching messages:", err);
                 }
             };
-
+    
             fetchMessages();
-
+    
             // Join the active chat room
             socket.emit('joinChat', activeChat._id);
-
+    
             // Listen for incoming messages
             socket.on('receiveMessage', (message) => {
-                setMessages((prevMessages) => [...prevMessages, message]);
+                setMessages((prevMessages) => {
+                    // Check if this message is already in the state by comparing temporary IDs
+                    const isMessageAlreadyAdded = prevMessages.some(
+                        (msg) => msg._id === message._id || msg.tempId === message._id
+                    );
+    
+                    // If the message is already added, do not add it again
+                    if (isMessageAlreadyAdded) {
+                        return prevMessages;
+                    }
+    
+                    return [...prevMessages, message];
+                });
             });
         }
-
+    
         return () => {
             if (activeChat) {
                 socket.emit('leaveChat', activeChat._id); // Optionally leave the chat room
                 socket.off('receiveMessage'); // Remove the event listener
             }
         };
-    }, [activeChat]);
+    }, [activeChat, userId]);
+    
+    
+    
 
     const sendMessage = () => {
         if (newMessage.trim() === '' || !userId || !activeChat) return;
-
+    
         const messageData = {
             chatId: activeChat._id,
             senderId: userId,
             message: newMessage,
+            tempId: Date.now(), // Temporary ID to track the message
         };
-
+    
         // Emit the message to the server
         socket.emit('sendMessage', messageData);
-
+    
         // Optimistically update the UI with the sent message
-        setMessages((prevMessages) => [...prevMessages, { ...messageData, _id: Date.now() }]);
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { 
+                ...messageData, 
+                _id: messageData.tempId, 
+                sender: { _id: userId }
+            }
+        ]);
+    
         setNewMessage('');
     };
+    
+    
 
     return (
         <>
@@ -119,7 +145,7 @@ export const ChatPage = () => {
             <div className="chat-list">
                 {chats.length > 0 ? (
                     chats.map((chat) => {
-                        // Display only the name of the other participant
+                        
                         const otherParticipant = chat.members.find(member => member._id !== userId);
                         return (
                             <div
