@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Lottie from "lottie-react";
+import animationData from "../assets/Animation-bg-box.json"
+
 
 function HomePage() {
   const navigate = useNavigate();
@@ -39,6 +42,7 @@ function HomePage() {
           </div>
           <div className="homeImage">
             <img src={homeImage} alt="" />
+            {/* <Lottie animationData={animationData} /> */}
           </div>
         </div>
       </div>

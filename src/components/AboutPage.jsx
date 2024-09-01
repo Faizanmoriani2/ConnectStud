@@ -1,15 +1,22 @@
-import React from 'react';
-import '../styles/AboutPage.css'; // Ensure to style the section according to your design needs.
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import '../styles/AboutPage.css'; 
 import Navbar from './Navbar';
 
 export const AboutPage = () => {
+
+    useEffect(() => {
+        AOS.init({ duration: 1000 });
+    }, []);
+
     return (
         <>        
         <Navbar />
         <div className="about-section">
-            <h2>Reasons to ConnectStud</h2>
+            <h2>Why Choose ConnectStud?</h2>
             <div className="card-container">
-                <div className="card">
+                <div className="card" data-aos="fade-up">
                     <div className='card-tag'>#one</div>
                     <div className="card-header">Reliability</div>
                     <div className="card-content">
@@ -17,7 +24,7 @@ export const AboutPage = () => {
                     </div>
                 </div>
 
-                <div className="card">
+                <div className="card" data-aos="fade-up" data-aos-delay="200">
                     <div className='card-tag'>#two</div>
                     <div className="card-header">Transparency</div>
                     <div className="card-content">
@@ -25,7 +32,7 @@ export const AboutPage = () => {
                     </div>
                 </div>
 
-                <div className="card">
+                <div className="card" data-aos="fade-up" data-aos-delay="400">
                     <div className='card-tag'>#three</div>
                     <div className="card-header">Simplicity</div>
                     <div className="card-content">
@@ -33,10 +40,29 @@ export const AboutPage = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="additional-content" data-aos="fade-up" data-aos-delay="600">
+                <h3>More About Us</h3>
+                <p>
+                    ConnectStud is more than just a tutoring platform. We're a community of learners and educators who are passionate about education and making a difference in students' lives. Our mission is to provide an inclusive, supportive environment where every student can thrive.
+                </p>
+            </div>
+
+            <div className="testimonial-section" data-aos="fade-up" data-aos-delay="800">
+                <h3>What Our Users Say</h3>
+                <div className="testimonial">
+                    <p>
+                        "ConnectStud has been a game changer for me. The tutors are highly knowledgeable and really care about helping you understand the material. I went from struggling to excelling in my courses thanks to their support." - <strong>Jane Doe, Student</strong>
+                    </p>
+                </div>
+                <div className="testimonial" data-aos="fade-up" data-aos-delay="1000">
+                    <p>
+                        "As a tutor, ConnectStud has provided me with a platform to share my knowledge and make a real impact on students' academic journeys. It's a rewarding experience to see my students succeed." - <strong>John Smith, Tutor</strong>
+                    </p>
+                </div>
+            </div>
+
         </div>
         </>
-
     );
 };
-
-// export default AboutPage;
