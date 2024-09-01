@@ -26,7 +26,7 @@ const LoginPage = () => {
     if (response.ok) {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('userId', data.user.id);
-      navigate('/communities');
+      navigate('/newsfeed');
     } else {
       alert(data.message || 'Login failed');
     }

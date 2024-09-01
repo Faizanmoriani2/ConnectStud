@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import '../styles/ChatPage.css';
 import UserPage from './UserPage';
 
@@ -36,6 +38,24 @@ export const ChatPage = () => {
             fetchChats();
         }
     }, [userId]);
+
+    const deleteChat = async (chatId) => {
+        const token = localStorage.getItem('accessToken');
+        try {
+            const response = await fetch(`http://localhost:5000/api/chats/${chatId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` },
+            });
+            if (response.ok) {
+                setChats(chats.filter(chat => chat._id !== chatId));
+                if (activeChat?._id === chatId) setActiveChat(null);
+            } else {
+                console.error("Failed to delete chat");
+            }
+        } catch (err) {
+            console.error("Error deleting chat:", err);
+        }
+    };
 
     useEffect(() => {
         if (activeChat) {
@@ -98,15 +118,27 @@ export const ChatPage = () => {
         <div className="chat-page">
             <div className="chat-list">
                 {chats.length > 0 ? (
-                    chats.map((chat) => (
-                        <div
-                            key={chat._id}
-                            className={`chat-item ${activeChat && chat._id === activeChat._id ? 'active' : ''}`}
-                            onClick={() => setActiveChat(chat)}
-                        >
-                            {chat.members.map((participant) => participant.username).join(', ')}
-                        </div>
-                    ))
+                    chats.map((chat) => {
+                        // Display only the name of the other participant
+                        const otherParticipant = chat.members.find(member => member._id !== userId);
+                        return (
+                            <div
+                                key={chat._id}
+                                className={`chat-item ${activeChat && chat._id === activeChat._id ? 'active' : ''}`}
+                                onClick={() => setActiveChat(chat)}
+                            >
+                                {otherParticipant?.username}
+                                <FontAwesomeIcon 
+                                    icon={faTrash} 
+                                    className="delete-icon" 
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent click from selecting the chat
+                                        deleteChat(chat._id);
+                                    }}
+                                />
+                            </div>
+                        );
+                    })
                 ) : (
                     <p>No chats available. Start a new conversation!</p>
                 )}
