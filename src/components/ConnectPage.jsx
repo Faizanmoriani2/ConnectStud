@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserPage from './UserPage';
 import "../styles/ConnectPage.css"
 
 export const ConnectPage = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -31,8 +32,8 @@ export const ConnectPage = () => {
         };
         fetchUsers();
     }, []);
-    
-    const sendConnectionRequest = async (userId) => {
+
+    const sendConnectionRequest = async (receiverId) => {
         const token = localStorage.getItem('accessToken');
         
         try {
@@ -42,12 +43,31 @@ export const ConnectPage = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify({ receiverId: userId }),
+                body: JSON.stringify({ receiverId }),
             });
 
             const data = await response.json();
             if (response.ok) {
                 alert('Connection request sent');
+
+                // Create or fetch the chat
+                const chatResponse = await fetch('http://localhost:5000/api/chats', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ userId1: localStorage.getItem('userId'), userId2: receiverId }),
+                });
+
+                const chatData = await chatResponse.json();
+                if (chatResponse.ok) {
+                    // Redirect to ChatPage with the chat ID
+                    navigate(`/messages/${localStorage.getItem('userId')}?chatId=${chatData._id}`);
+                } else {
+                    setError('Failed to create or fetch chat');
+                }
+
             } else {
                 setError(data.message || 'Failed to send connection request');
             }
@@ -67,9 +87,7 @@ export const ConnectPage = () => {
                     <li key={user._id}>
                         {user.username} ({user.email})
                         <button onClick={() => sendConnectionRequest(user._id)}>Connect</button>
-                        {/* <Link to={`/messages/${user._id}`}>
-                            <button>Message</button>
-                        </Link> */}
+                        <button onClick={() => sendConnectionRequest(user._id)}>Message</button> {/* Update this line */}
                     </li>
                 ))}
             </ul>

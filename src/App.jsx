@@ -28,6 +28,8 @@ import { NotificationPage } from "./components/NotificationPage";
 import { InboxPage } from "./components/InboxPage";
 import { MessagePage } from "./components/MessagePage";
 import {AboutPage} from "./components/AboutPage"
+import { ChatPage } from "./components/ChatPage";
+import { NewsFeedPage } from "./components/NewsFeedPage";
 
 function App() {
   return (
@@ -69,6 +71,9 @@ function App() {
 
           <Route path="/about" element={<AboutPage />} />
 
+          <Route path="/messages/:userId" element={<MessagePage />} />
+          <Route path="/newsfeed" element={<NewsFeedPage/>} />
+          <Route path="/user/:userId/chat" element={<ChatPage />} />
         </Routes>
       </div>
     </Router>

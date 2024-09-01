@@ -1,69 +1,92 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 
 export const MessagePage = () => {
-    const { userId } = useParams(); // This is the receiver's ID
+    const { userId } = useParams(); // The ID of the user you're chatting with
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
-    const [error, setError] = useState(null);
+    const [socket, setSocket] = useState(null); // Socket instance
+    const currentUserId = 'yourCurrentUserId'; // Replace this with the actual logged-in user's ID
 
+    // Initialize socket connection and setup listeners
+    useEffect(() => {
+        const newSocket = io('http://localhost:5000'); // Replace with your backend URL
+        setSocket(newSocket);
+
+        // Join the room with the user ID
+        newSocket.emit('joinRoom', userId);
+
+        // Listen for incoming messages
+        newSocket.on('chatMessage', (msg) => {
+            setMessages((prevMessages) => [...prevMessages, msg]);
+        });
+
+        // Cleanup on unmount
+        return () => {
+            newSocket.disconnect();
+        };
+    }, [userId]);
+
+    // Fetch previous messages when the component loads
     useEffect(() => {
         const fetchMessages = async () => {
-            const token = localStorage.getItem('accessToken');
             try {
                 const response = await fetch(`http://localhost:5000/api/messages/${userId}`, {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`, // Assuming you're using token-based auth
                     },
                 });
 
-                const data = await response.json();
                 if (response.ok) {
+                    const data = await response.json();
                     setMessages(data);
                 } else {
-                    setError(data.message || 'Failed to fetch messages');
+                    console.error('Failed to fetch messages');
                 }
-            } catch (err) {
-                setError('An error occurred. Please try again.');
+            } catch (error) {
+                console.error('Error fetching messages:', error);
             }
         };
 
         fetchMessages();
-    }, [userId]); // Adding userId as a dependency to refetch when it changes
+    }, [userId]);
 
-    const sendMessage = async () => {
-        const token = localStorage.getItem('accessToken');
-        try {
-            const response = await fetch('http://localhost:5000/api/messages/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify({ receiverId: userId, message }),
-            });
+    useEffect(() => {
+        const newSocket = io('http://localhost:5000'); // Replace with your backend URL
+        setSocket(newSocket);
+    
+        newSocket.emit('joinRoom', userId);
+    
+        // Listen for incoming messages
+        newSocket.on('chatMessage', (msg) => {
+            setMessages((prevMessages) => [...prevMessages, msg]);
+        });
+    
+        return () => {
+            newSocket.disconnect();
+        };
+    }, [userId]);
 
-            const data = await response.json();
-            if (response.ok) {
-                setMessages([...messages, data]);
-                setMessage('');
-            } else {
-                setError(data.message || 'Failed to send message');
-            }
-        } catch (err) {
-            setError('An error occurred. Please try again.');
+    // Send a message
+    const sendMessage = () => {
+        if (message.trim() !== '' && socket) {
+            socket.emit('chatMessage', { receiverId: userId, senderId: currentUserId, message });
+            setMessages((prevMessages) => [...prevMessages, { senderId: currentUserId, message }]);
+            setMessage(''); // Clear input field
         }
     };
+    
 
     return (
         <div>
             <h2>Messages</h2>
-            {error && <p>{error}</p>}
             <div>
-                {messages.map(msg => (
-                    <div key={msg._id}>
-                        <strong>{msg.sender.username}:</strong> {msg.message}
+                {messages.map((msg, index) => (
+                    <div key={index}>
+                        <strong>{msg.senderId === currentUserId ? 'You' : 'Other'}:</strong> {msg.message}
                     </div>
                 ))}
             </div>
@@ -72,9 +95,12 @@ export const MessagePage = () => {
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && sendMessage()} // Send message on Enter key press
+                    placeholder="Type a message..."
                 />
                 <button onClick={sendMessage}>Send</button>
             </div>
         </div>
     );
 };
+

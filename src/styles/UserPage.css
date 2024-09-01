@@ -11,7 +11,7 @@
 
 .user-nav-mid {
     justify-self:flex-end;
-    margin-left: auto;
+    /* margin-lef; */
 }
 
 .user-nav-left h2 {
@@ -150,4 +150,42 @@
     z-index: 1000;
     margin-top: 10px;
     min-width: 150px;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+}
+
+.link-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.user-nav-mid li {
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.user-nav-mid a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.user-nav-mid a:hover .nav-icon,
+.user-nav-mid a:hover .link-text {
+    color: #fff;
+}
+
+.user-nav-mid a:hover {
+    background-color: #9e79d6;
 }

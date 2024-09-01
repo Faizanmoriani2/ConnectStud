@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import UserPage from './UserPage';
-import "../styles/ProfilePage.css"
-
+import "../styles/ProfilePage.css";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [bio, setBio] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePicture, setProfilePicture] = useState('/uploads/default-avatar.png');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
   const [success, setSuccess] = useState('');
 
-  // Fetch user data on component mount
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -28,8 +26,8 @@ const ProfilePage = () => {
 
         const data = await response.json();
         setUser(data);
-        setBio(data.bio || '');
-        setProfilePicture(data.profilePicture || null);
+        setBio(data.bio || ''); // Set bio if available, otherwise keep it empty
+        setProfilePicture(data.profilePicture || '/uploads/default-avatar.png'); // Set profile picture or default
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,15 +38,14 @@ const ProfilePage = () => {
     fetchUserProfile();
   }, []);
 
-  // Handle form submission for updating profile
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');  // Clear previous error
-    setSuccess(''); // Clear previous success message
+    setError('');
+    setSuccess('');
 
     const formData = new FormData();
     formData.append('bio', bio);
-    if (profilePicture) {
+    if (profilePicture instanceof File) { // Only append if profilePicture is a new file
       formData.append('profilePicture', profilePicture);
     }
 
@@ -66,15 +63,15 @@ const ProfilePage = () => {
       }
 
       const data = await response.json();
-      setUser(data);  // Update user data after a successful update
+      setUser(data);
+      setProfilePicture(data.profilePicture); // Update profile picture after successful update
       setSuccess('Profile updated successfully!');
-      setEditMode(false);  // Exit edit mode after successful update
+      setEditMode(false);
     } catch (err) {
       setError(err.message);
     }
   };
 
-  // Handle file change
   const handleFileChange = (e) => {
     setProfilePicture(e.target.files[0]);
   };
@@ -94,10 +91,14 @@ const ProfilePage = () => {
         <h2>{user.username}'s Profile</h2>
         {!editMode ? (
           <div className="profile-info">
-            <img src={`http://localhost:5000/uploads/default-avatar.png`} alt="Profile" className="profile-image" />
+            <img 
+              src={`http://localhost:5000${profilePicture}`} 
+              alt="Profile" 
+              className="profile-image" 
+            />
             <p><strong>Name:</strong> {user.username}</p>
             <p><strong>Email:</strong> {user.email}</p>
-            {user.bio && <p><strong>Bio:</strong> {user.bio}</p>}
+            {bio && <p><strong>Bio:</strong> {bio}</p>}
             <button className="edit-btn" onClick={() => setEditMode(true)}>Edit Profile</button>
           </div>
         ) : (

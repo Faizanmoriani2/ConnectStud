@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faUsers, faUserPlus, faComments, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import '../styles/UserPage.css';
 import bell from "../assets/bell.png";
-import logo from "../assets/logo-white-nobg.png"
+import logo from "../assets/logo-white-nobg.png";
 
 const UserPage = () => {
   const [user, setUser] = useState(null);
@@ -57,21 +57,45 @@ const UserPage = () => {
 
   return (
     <div className='user-navbar'>
-
       <div className="user-nav-left">
         <img src={logo} alt="logo" width={80}/>
       </div>
       
       <div className="user-nav-mid">
         <ul>
-          <li><Link to={'/communities'}>Explore Communities</Link></li>
-          <li><Link to={'/connect'}>Add Connections</Link></li>
+          <li>
+            <Link to={'/communities'}>
+              <FontAwesomeIcon icon={faUsers} className="nav-icon" />
+              <span className="link-text"></span>
+            </Link>
+          </li>
+          <li>
+            <Link to={`/user/${user.id}/chat`}>
+              <FontAwesomeIcon icon={faComments} className="nav-icon" />
+              <span className="link-text"></span>
+            </Link>
+          </li>
+          <li>
+            <Link to={`/newsfeed`}>
+              <FontAwesomeIcon icon={faNewspaper} className="nav-icon" />
+              <span className="link-text"></span>
+            </Link>
+          </li>
+          <li>
+            <Link to={'/connect'}>
+              <FontAwesomeIcon icon={faUserPlus} className="nav-icon" />
+              <span className="link-text"></span>
+            </Link>
+          </li>
         </ul>
       </div>
 
       <div className="user-info" onClick={toggleDropdown}>   
         <div className="profile-pic">
-          <img src={`http://localhost:5000/uploads/default-avatar.png`} alt="" />
+          <img src={user.profilePicture 
+                      ? `http://localhost:5000${user.profilePicture}` 
+                      : 'http://localhost:5000/uploads/default-avatar.png'} 
+                      alt="Profile" />
         </div>
         <p>{user.username}</p>
         <FontAwesomeIcon icon={faCaretDown} className="dropdown-arrow" />
@@ -86,7 +110,6 @@ const UserPage = () => {
           <button onClick={handleLogout} className="dropdown-item">Logout</button>
         </div>
       )}
-
     </div>
   );
 };

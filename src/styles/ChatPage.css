@@ -1,0 +1,119 @@
+/* ChatPage.css */
+.chat-page {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+}
+
+.chat-list {
+    width: 25%;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-item {
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    color: #333;
+}
+
+.chat-item.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.chat-item:hover {
+    background-color: #f9f9f9;
+}
+
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 70%;
+    font-size: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.message.sent {
+    background-color: #007bff;
+    color: #fff;
+    text-align: right;
+    align-self: flex-end;
+}
+
+.message.received {
+    background-color: #e0e0e0;
+    color: #333;
+    text-align: left;
+    align-self: flex-start;
+}
+
+.message-input {
+    display: flex;
+    padding: 15px 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #ffffff;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.message-input input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.message-input button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.message-input button:hover {
+    background-color: #0056b3;
+}
+
+.message-input button:active {
+    background-color: #004494;
+}
