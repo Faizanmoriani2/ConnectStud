@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
@@ -11,10 +11,18 @@
 body {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  /* background: #080520; */
-  background: linear-gradient(135deg, #451a60, #8e44ad);
+  background: #080520;
+  /* background: linear-gradient(135deg, #451a60, #8e44ad); */
+  font-family: "Manrope";
 }
 
 .logo-icon {
   margin-right: 5px;
+}
+
+.gradient-text {
+  background: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

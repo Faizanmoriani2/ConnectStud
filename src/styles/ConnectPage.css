@@ -38,6 +38,25 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+@media screen and (max-width: 575px) {
+    .ConnectPage li {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .ConnectPage-btns {
+        display: flex
+    }
+
+    .ConnectPage-btns button {
+            /* width: 50%; */
+        font-weight: 600;
+        display: flex;
+        gap: 5px;
+    }
+}
+
 .ConnectPage li:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);

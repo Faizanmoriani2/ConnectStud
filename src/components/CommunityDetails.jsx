@@ -299,7 +299,7 @@ const CommunityDetails = () => {
                 {(post.author._id === currentUserId || community.createdBy === currentUserId) && (
                   <div className="post-actions">
                     <button onClick={() => handleEditPost(post._id)}>Edit</button>
-                    <button onClick={() => initiatePostDelete(post._id)}>Delete</button>
+                    <button style={{background: "#dc3545"}} onClick={() => initiatePostDelete(post._id)}>Delete</button>
                   </div>
                 )}
 
@@ -315,7 +315,7 @@ const CommunityDetails = () => {
                           <p><strong>{comment.author.username}</strong> ({comment.author.email})</p>
                           <p>{comment.content}</p>
                           {(comment.author._id === currentUserId || post.author._id === currentUserId) && (
-                            <button onClick={() => handleDeleteComment(comment._id, post._id)}>Delete</button>
+                            <button className="del-btn" onClick={() => handleDeleteComment(comment._id, post._id)}>Delete</button>
                           )}
                         </div>
                       ))}

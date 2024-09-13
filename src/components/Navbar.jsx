@@ -5,6 +5,8 @@ import Logo from "../assets/logo-white-nobg.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+import newLogo from "../assets/2.png"
+
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +23,7 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="nav-right">
-        <img src={Logo} alt="logo" width={100} />
+        <img src={newLogo} alt="logo" width={100} />
         {/* <h2>ConnectStud</h2> */}
       </div>
 

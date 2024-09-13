@@ -12,6 +12,17 @@
   margin-bottom: 30px;
 }
 
+.Community-details-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #fff;
+}
+
+.community-detail-main button {
+  margin-top: 1rem;
+}
+
 .community-detail-main img {
   width: 100%;
   height: auto;
@@ -23,6 +34,12 @@
 .community-detail-container h2 {
   font-size: 2rem;
   color: #fff;
+}
+
+@media screen and (max-width: 575px) {
+  .community-detail-container h2 {
+    text-align: center;
+  }
 }
 
 .community-detail-container h3 {
@@ -49,7 +66,14 @@ p {
 }
 
 .community-detail-container button:hover {
-  background-color: #0056b3;
+  background-color: #9e79d68e;
+}
+
+.community-detail-update-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;;
 }
 
 .community-detail-update-section button {
@@ -74,8 +98,12 @@ p {
   padding: 20px;
   margin-bottom: 15px;
   border-radius: 8px;
-  background-color: #9e79d6;
+  background-color: #7f57bb;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.community-post-item textarea {
+  padding: 1rem;
 }
 
 .community-post-item p {
@@ -100,12 +128,24 @@ p {
   padding-top: 10px;
 }
 
+.comments-list {
+  margin-top: .5rem;
+}
+
 .comment-item {
   background-color: #555;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
   margin-bottom: 10px;
+}
+
+.del-btn {
+  background: red !important;
+}
+
+.del-btn:hover {
+  background: rgba(255, 0, 0, 0.575) !important;
 }
 
 .comments-section button {

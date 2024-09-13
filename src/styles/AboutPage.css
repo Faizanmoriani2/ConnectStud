@@ -1,21 +1,27 @@
 .about-section {
     text-align: left;
     padding: 50px 20px;
-    background: linear-gradient(to right, #2a2a5e, #1e1e3f);
+    /* background: linear-gradient(to right, #2a2a5e, #1e1e3f); */
     color: white;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     overflow: hidden;
 }
 
 .about-section h2 {
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
+    font-size: 38px;
     margin-bottom: 2rem;
     color: #bb99ff;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+
+@media screen and (max-width: 575px) {
+    .about-section h2 {
+        font-size: 32px;
+    }
+  }
 
 .card-container {
     display: flex;
