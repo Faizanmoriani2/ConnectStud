@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   /* background-color: #582c81; Dark purple background */
-  padding: 15px 30px;
+  padding: 0 1rem .5rem 1rem;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -44,6 +44,12 @@
   }
 }
 
+.user-nav-mid ul li.active {
+  background: #9f75fc;
+  border-radius: 20px;
+}
+
+
 .user-nav-mid a {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
@@ -75,7 +81,7 @@
 .user-info p {
   margin-left: 10px;
   font-size: 1rem;
-  color: #ddd;
+  color: #fff;
 }
 
 @media screen and (max-width: 575px) {
@@ -124,7 +130,7 @@
 }
 
 .dropdown-item:hover {
-  background-color: #9e79d6; /* Light purple hover effect */
+  background-color: #9f75fc; /* Light purple hover effect */
 }
 
 .dropdown-item button {
@@ -207,5 +213,5 @@
 }
 
 .user-nav-mid a:hover {
-  background-color: #9e79d6;
+  background-color: #9f75fc;
 }

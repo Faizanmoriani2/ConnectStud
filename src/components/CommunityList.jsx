@@ -5,6 +5,10 @@ import UserPage from './UserPage';
 import '../styles/CommunityList.css'
 import communityImage from "../assets/HomePage.jpg"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+
 const CommunityList = () => {
   const [communities, setCommunities] = useState([]);
   const [error, setError] = useState('');
@@ -48,12 +52,12 @@ const CommunityList = () => {
                 <img src={`http://localhost:5000${community.coverImage}`} alt="img.jpg" />
               </div>
               <div className='community-content'>
-                <div className="community-title">
+                <div className="community-title gradient-text">
                 <Link to={`/communities/${community._id}`}>{community.name}</Link>
                 </div>
                 <div className="community-description">
                 <p>{community.description}</p>
-                <h4>Created By: {community.createdBy.username}</h4>
+                <h4><FontAwesomeIcon icon={faUser} size="1x" /> {community.createdBy.username}</h4>
                 </div>
               </div>
           </div>
@@ -62,7 +66,7 @@ const CommunityList = () => {
           <div className='community-image'>
               </div>
               <div className='community-content'>
-                <div className="community-title">
+                <div className="community-title gradient-text">
                   <Link to={'/communities/create'}>Create New Community</Link>
                 </div>
                 <div className="community-description">

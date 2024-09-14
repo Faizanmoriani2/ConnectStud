@@ -98,7 +98,7 @@ export const ConnectPage = () => {
     <>
       <UserPage />
       <div className="ConnectPage">
-        <h1>Connect with Users</h1>
+        <h1 className="gradient-text">Connect with Users</h1>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <ul>
           {users.map((user) => (

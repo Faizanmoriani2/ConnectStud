@@ -14,6 +14,7 @@ export const ChatPage = () => {
     const [activeChat, setActiveChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
+    const [isChatFullscreen, setIsChatFullscreen] = useState(false); // Toggle fullscreen
 
     useEffect(() => {
         const fetchChats = async () => {
@@ -75,12 +76,12 @@ export const ChatPage = () => {
                     console.error("Error fetching messages:", err);
                 }
             };
-    
+
             fetchMessages();
-    
+
             // Join the active chat room
             socket.emit('joinChat', activeChat._id);
-    
+
             // Listen for incoming messages
             socket.on('receiveMessage', (message) => {
                 setMessages((prevMessages) => {
@@ -88,17 +89,17 @@ export const ChatPage = () => {
                     const isMessageAlreadyAdded = prevMessages.some(
                         (msg) => msg._id === message._id || msg.tempId === message._id
                     );
-    
+
                     // If the message is already added, do not add it again
                     if (isMessageAlreadyAdded) {
                         return prevMessages;
                     }
-    
+
                     return [...prevMessages, message];
                 });
             });
         }
-    
+
         return () => {
             if (activeChat) {
                 socket.emit('leaveChat', activeChat._id); // Optionally leave the chat room
@@ -106,23 +107,20 @@ export const ChatPage = () => {
             }
         };
     }, [activeChat, userId]);
-    
-    
-    
 
     const sendMessage = () => {
         if (newMessage.trim() === '' || !userId || !activeChat) return;
-    
+
         const messageData = {
             chatId: activeChat._id,
             senderId: userId,
             message: newMessage,
             tempId: Date.now(), // Temporary ID to track the message
         };
-    
+
         // Emit the message to the server
         socket.emit('sendMessage', messageData);
-    
+
         // Optimistically update the UI with the sent message
         setMessages((prevMessages) => [
             ...prevMessages,
@@ -132,26 +130,33 @@ export const ChatPage = () => {
                 sender: { _id: userId }
             }
         ]);
-    
+
         setNewMessage('');
     };
-    
-    
+
+    const handleChatClick = (chat) => {
+        setActiveChat(chat);
+        setIsChatFullscreen(true); // Set chat window to fullscreen
+    };
+
+    const handleCloseChat = () => {
+        setIsChatFullscreen(false); // Close fullscreen
+        setActiveChat(null);
+    };
 
     return (
         <>
         <UserPage />
         <div className="chat-page">
-            <div className="chat-list">
+            <div className={`chat-list ${isChatFullscreen ? 'hidden' : ''}`}>
                 {chats.length > 0 ? (
                     chats.map((chat) => {
-                        
                         const otherParticipant = chat.members.find(member => member._id !== userId);
                         return (
                             <div
                                 key={chat._id}
                                 className={`chat-item ${activeChat && chat._id === activeChat._id ? 'active' : ''}`}
-                                onClick={() => setActiveChat(chat)}
+                                onClick={() => handleChatClick(chat)}
                             >
                                 {otherParticipant?.username}
                                 <FontAwesomeIcon 
@@ -169,37 +174,34 @@ export const ChatPage = () => {
                     <p>No chats available. Start a new conversation!</p>
                 )}
             </div>
-            <div className="chat-window">
-                {activeChat ? (
-                    <>
-                        <div className="messages">
-                            {messages.length > 0 ? (
-                                messages.map((msg) => (
-                                    <div
-                                        key={msg?._id || Date.now()} // Ensure msg is defined
-                                        className={`message ${msg?.sender?._id === userId ? 'sent' : 'received'}`}
-                                    >
-                                        {msg?.message || 'Message content missing'}
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No messages yet. Say something!</p>
-                            )}
-                        </div>
-                        <div className="message-input">
-                            <input
-                                type="text"
-                                value={newMessage}
-                                onChange={(e) => setNewMessage(e.target.value)}
-                                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-                            />
-                            <button onClick={sendMessage}>Send</button>
-                        </div>
-                    </>
-                ) : (
-                    <p>Select a chat to start messaging</p>
-                )}
-            </div>
+            {activeChat && (
+                <div className={`chat-window ${isChatFullscreen ? 'fullscreen' : ''}`}>
+                    <button className="close-button" onClick={handleCloseChat}>Close Chat</button> {/* Button to close full-screen chat */}
+                    <div className="messages">
+                        {messages.length > 0 ? (
+                            messages.map((msg) => (
+                                <div
+                                    key={msg?._id || Date.now()} // Ensure msg is defined
+                                    className={`message ${msg?.sender?._id === userId ? 'sent' : 'received'}`}
+                                >
+                                    {msg?.message || 'Message content missing'}
+                                </div>
+                            ))
+                        ) : (
+                            <p>No messages yet. Say something!</p>
+                        )}
+                    </div>
+                    <div className="message-input">
+                        <input
+                            type="text"
+                            value={newMessage}
+                            onChange={(e) => setNewMessage(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                        />
+                        <button onClick={sendMessage}>Send</button>
+                    </div>
+                </div>
+            )}
         </div>
         </>
     );

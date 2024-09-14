@@ -246,12 +246,12 @@ const CommunityDetails = () => {
     <>
       <UserPage />
       <div className='community-detail-container'>
-        <h2>Community Details</h2>
+        <h2 className="gradient-text">Community Details</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {community && (
           <div className='community-detail-main'>
             <img src={`http://localhost:5000${community.coverImage}`} alt="Community Cover" />
-            <h3>{community.name}</h3>
+            <h3 className='gradient-text'>{community.name}</h3>
             <p>{community.description}</p>
 
             {community.createdBy === currentUserId ? (
@@ -287,7 +287,7 @@ const CommunityDetails = () => {
 
         <br />
 
-        <h3>Posts in this Community</h3>
+        <h3 className='gradient-text'>Posts in this Community</h3>
         <div className="community-posts">
           {posts.length > 0 ? (
             posts.map((post) => (

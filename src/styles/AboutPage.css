@@ -61,19 +61,18 @@
 }
 
 .card-header {
-    font-size: 1.8rem;
+    font-size: 28px;
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
     font-weight: 700;
     color: #fff;
     font-family: 'Poppins', sans-serif;
 }
 
 .card-content {
-    font-size: 1rem;
-    line-height: 1.5;
-    font-family: 'Roboto', sans-serif;
-    color: #ccc;
+    font-size: 16px;
+    line-height: 1.8;
+    font-family: 'Poppins', sans-serif;
+    color: #c6abff;
 }
 
 .additional-content, .testimonial-section {
@@ -86,16 +85,17 @@
 }
 
 .additional-content h3, .testimonial-section h3 {
-    font-size: 2rem;
+    font-size: 32px;
     margin-bottom: 1rem;
     color: #bb99ff;
     text-transform: uppercase;
 }
 
 .additional-content p, .testimonial p {
-    font-size: 1.2rem;
+    font-size: 18px;
     line-height: 1.7;
-    color: #ccc;
+    font-family: "Poppins", sans-serif;
+    color: #c6abff;
 }
 
 .testimonial {

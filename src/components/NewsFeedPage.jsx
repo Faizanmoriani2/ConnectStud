@@ -105,7 +105,7 @@ export const NewsFeedPage = () => {
         <>
         <UserPage />
         <div className="newsfeed">
-            <h1>Newsfeed</h1>
+            <h1 className='g'>Newsfeed</h1>
             {error && <p className="error-message">{error}</p>}
             {loading ? (
                 <p>Loading newsfeed...</p>

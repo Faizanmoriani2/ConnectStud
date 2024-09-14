@@ -22,12 +22,13 @@
   align-content: center;
   gap: 4rem;
   border-radius: 18px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     130deg,
     rgba(15, 9, 52, 1) 0%,
     rgba(48, 27, 79, 1) 37%,
     rgba(71, 32, 125, 1) 100%
-  );
+  ); */
+  background: linear-gradient(130deg, rgba(15, 9, 52, 1) 0%, rgba(48, 27, 79, 1) 37%, rgb(11 5 20) 100%);
   padding: 3rem;
 }
 
@@ -95,6 +96,7 @@
   font-size: 18px;
   color: #c6abff;
   margin-top: 1rem;
+  font-family: "Poppins", sans-serif;
 }
 
 @media screen and (max-width: 575px) {
@@ -106,13 +108,14 @@
 
 .home-btnStart button {
   padding: 15px 45px 15px 25px;
-  margin-top: 1rem;
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   border-radius: 25px;
   cursor: pointer;
-  font-weight: 700;
-  background: #fff;
+  font-weight: 800;
+  /* background: #fff; */
+  background: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
   position: relative;
   font-size: 18px;
 }
@@ -132,7 +135,7 @@
   border-radius: 50%;
   background-color: #000;
   color: #fff;
-  padding: 7px;
+  padding: 9px;
 }
 
 .homeImage {

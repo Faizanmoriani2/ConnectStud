@@ -85,3 +85,17 @@
     margin-bottom: 10px;
 }
 
+.community-description p {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.7;
+    font-size: 16px;
+    color: #c6abff;
+}
+
+.community-description h4 {
+    color: #ffffff;
+    font-family: "Roboto, sans-serif";
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 1rem;
+}
